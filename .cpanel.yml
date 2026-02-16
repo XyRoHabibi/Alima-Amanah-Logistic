@@ -1,5 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/alice8317/public_html/
-    - /bin/rsync -av --delete --exclude=".git" ./ $DEPLOYPATH
+    - echo "DEPLOY WORKING" > /home/alice8317/public_html/test.txt
