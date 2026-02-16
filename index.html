@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Alima Amanah Logistic - Jasa Pengiriman Mobil Terpercaya</title>
+    <meta name="description"
+        content="Layanan pengiriman mobil dan alat berat profesional ke seluruh Indonesia dengan asuransi penuh dan tracking real-time.">
+    <link rel="icon" href="logo icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f27f0d",
+                        "anim-primary": "#1F3A5F",
+                        "anim-secondary": "#F58220",
+                        "primary-dark": "#e67300",
+                        "navy-deep": "#1c140d",
+                        "navy-light": "#3d2e21",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                        "accent": "#ff9d4d",
+                        "text-light": "#6b5d54",
+                        "border-light": "#e8dbce",
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-in': 'bounceIn 0.8s ease-out',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-grid-pattern {
+                background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+                background-size: 30px 30px;
+            }
+            .animate-delay-100 { animation-delay: 100ms; }
+            .animate-delay-200 { animation-delay: 200ms; }
+            .animate-delay-300 { animation-delay: 300ms; }
+            .animate-delay-400 { animation-delay: 400ms; }
+            .animate-delay-500 { animation-delay: 500ms; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Poppins', sans-serif; }
+        .storyline-container { position: relative; }
+        .truck-cursor {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+        }
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #f8f7f5;
+            display: flex;
+            justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #f27f0d; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d06d0b; }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        
+        /* Smooth reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Roadmap Styles */
+        .roadmap-card {
+            transition: all .35s ease;
+            opacity: 0.6;
+            transform: scale(0.97);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .roadmap-card.active {
+            opacity: 1;
+            transform: scale(1);
+            background: rgba(255, 255, 255, 0.85);
+            border-left: 4px solid #F58220;
+            box-shadow: 0 15px 40px rgba(245, 130, 32, 0.2);
+        }
+        
+        /* Dark Mode Adjustments for Roadmap */
+        .dark .roadmap-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .dark .roadmap-card.active {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-number {
+            background: #1F3A5F;
+            color: white;
+            width: 36px; height: 36px;
+            display: flex;
+            align-items: center; justify-content: center;
+            border-radius: 10px;
+            font-weight: bold; font-size: 12px;
+            transition: all .3s ease;
+        }
+        
+        .dark .step-number { background: #334155; color: #94a3b8; }
+
+        .roadmap-card.active .step-number {
+            background: #F58220;
+            color: white;
+            box-shadow: 0 8px 20px rgba(245, 130, 32, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .roadmap-card.active h4 { color: #F58220 !important; }
+        .roadmap-card.active span.material-symbols-outlined { color: #F58220 !important; }
+
+        .fade-slide-up { animation: fadeUp .6s ease forwards; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+   
+.premium-card-auto {
+    width: 100%;
+    max-width: 500px; /* batasi biar tidak terlalu besar */
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    transition: transform 0.5s ease;
+}
+
+.premium-card-auto img {
+    width: 100%;
+    height: auto;   /* penting */
+    object-fit: contain; /* tampil full tanpa crop */
+    display: block;
+}
+
+/* Focus effect tetap ada */
+.swiper-slide {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    transform: scale(0.9);
+    opacity: 0.6;
+}
+
+.swiper-slide-active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: white;
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255,255,255,0.4);
+}
+
+.swiper-pagination-bullet-active {
+    background: #f97316;
+}
+
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-navy-deep dark:text-white transition-colors duration-300 relative overflow-x-hidden">
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-4 text-navy-deep font-semibold">Memuat...</p>
+        </div>
+    </div>
+
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] animate-pulse-slow">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-navy-deep/5 dark:bg-primary/5 rounded-full blur-[120px] animate-pulse-slow"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute inset-0 bg-grid-pattern text-primary/5 opacity-50"></div>
+    </div>
+
+    <div class="relative flex h-auto min-h-screen w-full flex-col z-10">
+        <!-- Header Navigation -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-navy-light bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4 md:px-10 lg:px-20 sticky top-0 z-50">
+            <div class="flex items-center gap-3">
+                <div class="w-16 h-16 flex items-center justify-center">
+                    <img src="Alima Amanah Logistik 1.png" alt="Alima Amanah Logistic"
+                        class="w-full h-full object-contain">
+                </div>
+                <h2 class="text-navy-deep dark:text-white text-lg font-bold leading-tight tracking-tight">ALIMA AMANAH
+                    LOGISTIC</h2>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <nav class="flex items-center gap-8">
+                    <a class="text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#services">Layanan</a>
+                    <a class="text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#tarif">Cek Tarif</a>
+                    <a class="text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#about">Tentang Kami</a>
+
+                </nav>
+                <button id="theme-toggle"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <span class="material-symbols-outlined text-navy-deep dark:text-white">light_mode</span>
+                </button>
+            </div>
+
+            <div class="lg:hidden">
+                <button id="mobile-menu-toggle"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <span class="material-symbols-outlined text-navy-deep dark:text-white">menu</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white dark:bg-background-dark shadow-xl z-50 lg:hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <img src="Alima Amanah Logistik 1.png" alt="Alima Amanah Logistic"
+                            class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-deep dark:text-white">Menu</h3>
+                </div>
+                <button id="mobile-menu-close"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <span class="material-symbols-outlined text-navy-deep dark:text-white">close</span>
+                </button>
+            </div>
+            <nav class="p-6">
+                <a class="block text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors p-2"
+                    href="#services">Layanan</a>
+                <a class="block text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors p-2"
+                    href="#tarif">Cek Tarif</a>
+                <a class="block text-navy-deep dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors p-2"
+                    href="#about">Tentang Kami</a>
+
+                <button
+                    class="w-full mt-4 flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-medium shadow-md hover:bg-primary-dark transition-all">
+                    Login
+                </button>
+            </nav>
+        </div>
+
+        <main class="flex-1 flex flex-col items-center">
+            <div class="w-full max-w-[1440px] px-0 md:px-10 py-5 lg:py-10">
+                <div class="@container">
+                    <!-- Hero Section -->
+                    <div
+                        class="relative min-h-[600px] flex flex-col justify-center items-start px-6 md:px-16 lg:px-24 py-20 rounded-none md:rounded-3xl overflow-hidden bg-gradient-to-r from-navy-deep to-navy-light animate-fade-in">
+                        <div class="absolute inset-0 z-0">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-navy-deep/90 via-navy-deep/60 to-transparent z-10">
+                            </div>
+                            <div class="w-full h-full bg-cover bg-center"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2LqgQ5p0-BdK3TY5bOQAGEUfuzNfsYRRRatfl5DbRZV5k9vWpHricyoHMIEW8nQvgjXXboqDpSVagUKAYc-QA-Zu-c0sKyDRb691e5E3XtI_1Cem31T8P482Dq9vsnqcZbfxO_HIr1W85zDwdg-AFMeLCpI1Cp-eTRgoEINJkjbbT6n6F9XuIbNersYi8WrXiOE_DkhHSofej5BEairD8WvGiiBwomsPNBS1V7pbn8uh0S8ZJtq_FWbAPA2ly2cv3eIlzHJGzg9Lp');">
+                            </div>
+                        </div>
+                        <div class="relative z-20 max-w-[720px] flex flex-col gap-8 animate-slide-up">
+                            <div
+                                class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full w-fit group">
+                                <span
+                                    class="flex h-5 w-7 items-center justify-center overflow-hidden rounded-sm bg-white">
+                                    <div class="h-1/2 w-full bg-[#FF0000]"></div>
+                                    <div class="h-1/2 w-full bg-white"></div>
+                                </span>
+                                <span
+                                    class="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-primary transition-colors">Legalitas
+                                    PT Resmi</span>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <h1
+                                    class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight">
+                                    Kirim Mobil, Motor & Alat Berat ke Seluruh Nusantara
+                                </h1>
+                                <p class="text-gray-200 text-lg md:text-xl font-normal max-w-[600px] leading-relaxed">
+                                    Layanan pengiriman kendaraan dan logistik profesional dengan jaminan keamanan 100%
+                                    berasuransi
+                                    hingga ke depan pintu rumah Anda.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-4 pt-4">
+                                <a class="flex items-center gap-3 min-w-[200px] cursor-pointer justify-center rounded-xl h-14 px-8 bg-[#25D366] text-white text-lg font-semibold shadow-lg hover:scale-105 transition-all animate-bounce-in animate-delay-200"
+                                    href="https://wa.me/6285242130185">
+                                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z">
+                                        </path>
+                                    </svg>
+                                    <span>Chat via WhatsApp</span>
+                                </a>
+                                <button
+                                    class="flex items-center gap-2 min-w-[200px] cursor-pointer justify-center rounded-xl h-14 px-8 bg-white/10 backdrop-blur-sm border border-white/30 text-white text-lg font-semibold hover:bg-white/20 transition-all animate-bounce-in animate-delay-300">
+                                    <span class="material-symbols-outlined">calculate</span>
+                                    <span>Cek Tarif Pengiriman</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hidden lg:flex absolute bottom-10 right-10 gap-4 z-20">
+                            <div
+                                class="bg-navy-deep/80 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4">
+                                <div class="bg-primary/20 p-2 rounded-lg"><span
+                                        class="material-symbols-outlined text-primary">local_shipping</span></div>
+                                <div>
+                                    <p class="text-white font-semibold leading-none">10,000+</p>
+                                    <p class="text-gray-400 text-xs">Mobil Terkirim</p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-navy-deep/80 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4">
+                                <div class="bg-primary/20 p-2 rounded-lg"><span
+                                        class="material-symbols-outlined text-primary">verified_user</span></div>
+                                <div>
+                                    <p class="text-white font-semibold leading-none">Amanah</p>
+                                    <p class="text-gray-400 text-xs">Berizin Resmi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partner Marquee -->
+            <div
+                class="w-full py-8 overflow-hidden bg-white/50 dark:bg-white/5 backdrop-blur-sm border-y border-border-light/30">
+                <div class="flex animate-marquee whitespace-nowrap items-center">
+                    <div class="flex items-center gap-20 px-10">
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">shield_with_heart</span>
+                            <span class="font-semibold text-xl">ASURANSI SINAR MAS</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">directions_boat</span>
+                            <span class="font-semibold text-xl">PELNI INDONESIA</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">anchor</span>
+                            <span class="font-semibold text-xl">ASDP FERRY</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">apartment</span>
+                            <span class="font-semibold text-xl">JASA RAHARJA</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">factory</span>
+                            <span class="font-semibold text-xl">TOYOTA LOGISTICS</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-20 px-10">
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">shield_with_heart</span>
+                            <span class="font-semibold text-xl">ASURANSI SINAR MAS</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">directions_boat</span>
+                            <span class="font-semibold text-xl">PELNI INDONESIA</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-navy-deep/40 dark:text-white/40 grayscale hover:grayscale-0 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-4xl">anchor</span>
+                            <span class="font-semibold text-xl">ASDP FERRY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- TENTANG KAMI SECTION -->
+            <section id="about" class="w-full max-w-[1440px] px-6 md:px-20 py-20 reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-black text-navy-deep dark:text-white mb-6">Tentang Alima
+                            Amanah Logistic</h2>
+                        <p class="text-navy-deep/70 dark:text-gray-400 mb-6 leading-relaxed">
+                            PT Alima Amanah Logistic didirikan pada tahun 2015 dengan komitmen menjadi solusi logistik
+                            terpercaya di Indonesia.
+                            Dengan pengalaman lebih dari 8 tahun, kami telah melayani ribuan pelanggan dari berbagai
+                            kalangan.
+                        </p>
+                        <p class="text-navy-deep/70 dark:text-gray-400 mb-6 leading-relaxed">
+                            Kami mengkhususkan diri dalam pengiriman mobil dan alat berat dengan jaminan keamanan dan
+                            ketepatan waktu.
+                            Didukung oleh tim profesional dan armada modern, Alima Amanah siap menjadi partner logistik
+                            andalan Anda.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">verified</span>
+                                <span class="text-sm font-medium">Legalitas Kemenkumham</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">workspace_premium</span>
+                                <span class="text-sm font-medium">ISO 9001:2015</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">handshake</span>
+                                <span class="text-sm font-medium">10+ Partner Bisnis</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">support_agent</span>
+                                <span class="text-sm font-medium">24/7 Customer Support</span>
+                            </div>
+                        </div>
+                        <a href="#services"
+                            class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                            <span>Lihat Layanan Kami</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/office/600/400.jpg" alt="Kantor Alima Amanah"
+                            class="rounded-2xl shadow-xl w-full h-auto">
+                        <div class="absolute -bottom-6 -left-6 bg-primary text-white p-4 rounded-xl shadow-xl">
+                            <p class="text-2xl font-bold">8+ Tahun</p>
+                            <p class="text-sm">Pengalaman</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="w-full max-w-[1440px] px-6 md:px-20 py-20 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-black text-navy-deep dark:text-white mb-4">Layanan Kami</h2>
+                    <p class="text-navy-deep/60 dark:text-gray-400 max-w-[700px] mx-auto">Solusi logistik lengkap untuk
+                        kebutuhan pengiriman kendaraan dan alat berat Anda ke seluruh Indonesia.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="bg-white dark:bg-[#2d2218] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group hover:-translate-y-2 h-full flex flex-col">
+                        <div
+                            class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">directions_car</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-deep dark:text-white mb-4">Pengiriman Mobil</h3>
+                        <p class="text-navy-deep/60 dark:text-gray-400 mb-6 flex-1">Jasa pengiriman mobil dengan
+                            asuransi
+                            all-risk dan tracking real-time ke seluruh Indonesia.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline mt-auto">
+                            Pelajari lebih lanjut
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-[#2d2218] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group hover:-translate-y-2 h-full flex flex-col">
+                        <div
+                            class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">two_wheeler</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-deep dark:text-white mb-4">Pengiriman Motor</h3>
+                        <p class="text-navy-deep/60 dark:text-gray-400 mb-6 flex-1">Kirim motor gede (Moge),
+                            motor bebek, hingga skuter dengan packing aman standar dealer.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline mt-auto">
+                            Pelajari lebih lanjut
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-[#2d2218] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group hover:-translate-y-2 h-full flex flex-col">
+                        <div
+                            class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">construction</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-deep dark:text-white mb-4">Pengiriman Alat Berat</h3>
+                        <p class="text-navy-deep/60 dark:text-gray-400 mb-6 flex-1">Pengiriman alat berat seperti
+                            excavator,
+                            bulldozer, dan crane dengan peralatan khusus.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline mt-auto">
+                            Pelajari lebih lanjut
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-[#2d2218] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group hover:-translate-y-2 h-full flex flex-col">
+                        <div
+                            class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-deep dark:text-white mb-4">Kargo & Logistik</h3>
+                        <p class="text-navy-deep/60 dark:text-gray-400 mb-6 flex-1">Jasa pengiriman barang & sewa truk
+                            CDD/CDE
+                            untuk pindahan rumah atau distribusi logistik.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline mt-auto">
+                            Pelajari lebih lanjut
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tariff Calculator Section -->
+            <section id="tarif" class="w-full max-w-[1440px] px-6 md:px-20 py-20 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-black text-navy-deep dark:text-white mb-4">Kalkulator Tarif
+                        Pengiriman</h2>
+                    <p class="text-navy-deep/60 dark:text-gray-400 max-w-[700px] mx-auto">Hitung estimasi biaya
+                        pengiriman kendaraan Anda dengan cepat dan mudah.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white dark:bg-[#2d2218] p-8 rounded-2xl shadow-lg">
+                    <form id="tariff-form" class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        onsubmit="handleTariffSubmit(event)">
+                        <div>
+                            <label for="origin"
+                                class="block text-sm font-medium text-navy-deep dark:text-gray-300 mb-2">Kota
+                                Asal</label>
+                            <select id="origin" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-background-dark text-navy-deep dark:text-white">
+                                <option value="">Pilih Kota Asal</option>
+                                <option value="jakarta">Jakarta</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="medan">Medan</option>
+                                <option value="makassar">Makassar</option>
+                                <option value="lainnya">Lainnya...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="destination"
+                                class="block text-sm font-medium text-navy-deep dark:text-gray-300 mb-2">Kota
+                                Tujuan</label>
+                            <select id="destination" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-background-dark text-navy-deep dark:text-white">
+                                <option value="">Pilih Kota Tujuan</option>
+                                <option value="jakarta">Jakarta</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="medan">Medan</option>
+                                <option value="makassar">Makassar</option>
+                                <option value="lainnya">Lainnya...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="vehicle-type"
+                                class="block text-sm font-medium text-navy-deep dark:text-gray-300 mb-2">Jenis
+                                Kendaraan</label>
+                            <select id="vehicle-type" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-background-dark text-navy-deep dark:text-white">
+                                <option value="">Pilih Jenis Kendaraan</option>
+                                <option value="sedan">Mobil Sedan</option>
+                                <option value="suv">Mobil SUV/MPV</option>
+                                <option value="motor-bebek">Motor Bebek/Matic</option>
+                                <option value="motor-sport">Motor Sport/Moge</option>
+                                <option value="alat-berat">Alat Berat</option>
+                                <option value="truck">Truk/Bus</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="service-type"
+                                class="block text-sm font-medium text-navy-deep dark:text-gray-300 mb-2">Jenis
+                                Layanan</label>
+                            <select id="service-type" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-background-dark text-navy-deep dark:text-white">
+                                <option value="">Pilih Jenis Layanan</option>
+                                <option value="door-to-door">Door to Door</option>
+                                <option value="port-to-port">Port to Port</option>
+                                <option value="towing">Towing</option>
+                                <option value="car-carrier">Car Carrier</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit"
+                                class="w-full md:w-auto px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors flex items-center justify-center gap-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA"
+                                    class="w-5 h-5">
+                                Cek Tarif via WhatsApp
+                            </button>
+                        </div>
+                    </form>
+                    <script>
+                        function handleTariffSubmit(e) {
+                            e.preventDefault();
+                            const origin = document.getElementById('origin').value;
+                            const destination = document.getElementById('destination').value;
+                            const vehicle = document.getElementById('vehicle-type').value;
+                            const service = document.getElementById('service-type').value;
+
+                            const message = `Halo Alima Amanah, saya ingin cek tarif pengiriman:\n\n📍 Asal: ${origin}\n🏁 Tujuan: ${destination}\n🚗 Kendaraan: ${vehicle}\n📦 Layanan: ${service}\n\nMohon info harganya. Terima kasih.`;
+
+                            window.open(`https://wa.me/6285242130185?text=${encodeURIComponent(message)}`, '_blank');
+                        }
+                    </script>
+                    <div id="tariff-result" class="mt-8 p-6 bg-primary/10 rounded-xl hidden">
+                        <h3 class="text-xl font-bold text-navy-deep dark:text-white mb-2">Estimasi Biaya Pengiriman</h3>
+                        <p class="text-3xl font-bold text-primary">Rp 2.500.000</p>
+                        <p class="text-navy-deep/60 dark:text-gray-400 mt-2">Estimasi waktu tiba: 3-5 hari kerja</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Section -->
+            <section class="py-28 px-8 xl:px-20 relative overflow-visible reveal"
+                style="font-family: 'Plus Jakarta Sans', sans-serif;">
+
+                <div class="w-full relative z-10">
+
+                    <!-- Heading -->
+                    <div class="text-center mb-20">
+                        <h2 class="text-4xl md:text-6xl font-black text-navy-deep dark:text-white mb-6">
+                            Alur <span class="text-primary italic">Pengiriman Mobil</span>
+                        </h2>
+                        <p class="text-navy-deep/60 dark:text-gray-400 text-lg">
+                            Proses Transparan & Terpercaya • Door to Door
+                        </p>
+                    </div>
+
+                    <!-- Grid Layout -->
+                    <div class="grid lg:grid-cols-12 gap-16">
+
+                        <!-- Sidebar (Lebih Ramping) -->
+                        <div class="lg:col-span-3 space-y-4 pr-6 relative z-20" id="roadmap-list"></div>
+
+                        <!-- Content Panel (Lebih Lebar) -->
+                        <div class="lg:col-span-9 flex flex-col justify-center min-h-[560px] relative">
+
+                            <!-- Glass Background -->
+                            <div
+                                class="absolute inset-0 backdrop-blur-2xl bg-white/40 dark:bg-white/5 rounded-[2.5rem] border border-white/50 dark:border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.25)]">
+                            </div>
+
+                            <!-- Glossy Effect -->
+                            <div
+                                class="absolute inset-0 rounded-[2.5rem] pointer-events-none bg-gradient-to-b from-white/60 via-transparent to-transparent opacity-40">
+                            </div>
+
+                            <!-- Tracking Pill -->
+                            <div
+                                class="absolute top-8 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-xl border border-white/40 px-8 py-2 rounded-full shadow-md z-20">
+                                <span class="text-xs font-mono text-gray-600">
+                                    alimaamanahlogistic.com
+                                </span>
+                                <span class="ml-3 w-2 h-2 inline-block rounded-full bg-green-500 animate-pulse"></span>
+                            </div>
+
+                            <!-- Main Content -->
+                            <div class="relative z-10 p-16 md:p-24 flex items-center justify-center h-full">
+                                <div id="roadmap-content" class="text-center w-full max-w-5xl"></div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div
+                                class="absolute bottom-0 inset-x-0 px-12 py-6 flex justify-between text-sm text-gray-600 border-t border-white/20">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary text-base">
+                                        local_shipping
+                                    </span>
+                                    <span>Door to Door Indonesia</span>
+                                </div>
+                                <span>Estimasi 2–7 Hari</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <div class="py-16 md:py-24 max-w-[1440px] px-6 md:px-20 reveal">
+                <div class="flex flex-col gap-10">
+                    <div class="flex flex-col gap-4 max-w-[800px]">
+                        <h2
+                            class="text-navy-deep dark:text-white tracking-tight text-3xl md:text-4xl font-black leading-tight">
+                            Mengapa Warga Indonesia Memilih Alima Amanah?</h2>
+                        <p class="text-navy-deep/70 dark:text-gray-400 text-lg font-normal leading-relaxed">Keamanan dan
+                            amanah adalah prioritas utama dalam setiap pengiriman. Kami memahami bahwa kendaraan Anda
+                            adalah aset berharga.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div
+                            class="flex flex-col gap-4 rounded-2xl border border-border-light dark:border-navy-light bg-white/60 dark:bg-[#2d2218]/60 backdrop-blur-sm p-8 hover:shadow-xl transition-all group hover:-translate-y-2">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined" style="font-size: 32px;">verified_user</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-navy-deep dark:text-white text-xl font-bold leading-tight">Asuransi
+                                    Penuh (All-Risk)</h3>
+                                <p class="text-navy-deep/60 dark:text-gray-400 text-base leading-normal">Perlindungan
+                                    maksimal untuk kendaraan Anda dari titik jemput hingga tujuan akhir.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-2xl border border-border-light dark:border-navy-light bg-white/60 dark:bg-[#2d2218]/60 backdrop-blur-sm p-8 hover:shadow-xl transition-all group hover:-translate-y-2">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined" style="font-size: 32px;">distance</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-navy-deep dark:text-white text-xl font-bold leading-tight">Pelacakan
+                                    Real-time</h3>
+                                <p class="text-navy-deep/60 dark:text-gray-400 text-base leading-normal">Pantau posisi
+                                    mobil Anda kapan saja melalui dashboard pelacakan kami yang transparan.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-2xl border border-border-light dark:border-navy-light bg-white/60 dark:bg-[#2d2218]/60 backdrop-blur-sm p-8 hover:shadow-xl transition-all group hover:-translate-y-2">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined" style="font-size: 32px;">door_front</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-navy-deep dark:text-white text-xl font-bold leading-tight">Layanan Door
+                                    to Door</h3>
+                                <p class="text-navy-deep/60 dark:text-gray-400 text-base leading-normal">Kami jemput di
+                                    depan rumah Anda dan antar tepat sampai di garasi tujuan tanpa ribet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="w-full bg-[#0B1C3D] py-28 text-white">
+                <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+                        <div class="max-w-[600px]">
+                            <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+                                Testimoni Pelanggan
+                            </h2>
+                            <p class="text-gray-400 text-lg">
+                                Dokumentasi nyata pengiriman kendaraan yang telah kami layani
+                            </p>
+                        </div>
+                    </div>
+
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+                    <div class="swiper premium-testimonial pb-16">
+                        <div class="swiper-wrapper">
+
+                            <!-- SLIDE 1 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update1.png" alt="Testimoni 1">
+                                </div>
+                            </div>
+
+                            <!-- SLIDE 2 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update2.png" alt="Testimoni 2">
+                                </div>
+                            </div>
+
+                            <!-- SLIDE 3 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update3.png" alt="Testimoni 3">
+                                </div>
+                            </div>
+                            <!-- SLIDE 4 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update4.png" alt="Testimoni 4">
+                                </div>
+                            </div>
+                            <!-- SLIDE 5 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update5.png" alt="Testimoni 5">
+                                </div>
+                            </div>
+                            <!-- SLIDE 6 -->
+                            <div class="swiper-slide flex justify-center">
+                                <div class="premium-card-auto">
+                                    <img src="assets/img/testimoni-update6.png" alt="Testimoni 6">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="w-full max-w-[1440px] px-6 md:px-20 py-20 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-black text-navy-deep dark:text-white mb-4">Pertanyaan yang
+                        Sering Diajukan</h2>
+                    <p class="text-navy-deep/60 dark:text-gray-400 max-w-[700px] mx-auto">Temukan jawaban untuk
+                        pertanyaan umum tentang layanan pengiriman kami.</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto flex flex-col gap-4">
+                    <!-- FAQ Item 1 -->
+                    <div
+                        class="faq-item group bg-white dark:bg-[#2d2218] rounded-2xl shadow-lg border border-transparent transition-all duration-300 hover:shadow-xl">
+                        <button
+                            class="w-full flex justify-between items-center text-left p-6 font-semibold text-navy-deep dark:text-white group-hover:text-primary transition-colors focus:outline-none">
+                            <span class="text-lg">Berapa lama waktu pengiriman mobil antar pulau?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center transition-all duration-300 group-[.active]:bg-primary group-[.active]:text-white group-[.active]:rotate-180">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </button>
+                        <div
+                            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0 group-[.active]:max-h-[500px] group-[.active]:opacity-100">
+                            <div
+                                class="p-6 pt-0 text-navy-deep/70 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 mt-2">
+                                <p>Waktu pengiriman antar pulau bervariasi tergantung rute, umumnya <strong>3-7 hari
+                                        kerja</strong> untuk rute utama seperti Jakarta-Surabaya atau Jakarta-Makassar.
+                                    Untuk rute yang lebih jarang atau pelosok, waktu bisa mencapai 10-14 hari kerja
+                                    tergantung jadwal kapal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div
+                        class="faq-item group bg-white dark:bg-[#2d2218] rounded-2xl shadow-lg border border-transparent transition-all duration-300 hover:shadow-xl">
+                        <button
+                            class="w-full flex justify-between items-center text-left p-6 font-semibold text-navy-deep dark:text-white group-hover:text-primary transition-colors focus:outline-none">
+                            <span class="text-lg">Apakah mobil diasuransikan selama pengiriman?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center transition-all duration-300 group-[.active]:bg-primary group-[.active]:text-white group-[.active]:rotate-180">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </button>
+                        <div
+                            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0 group-[.active]:max-h-[500px] group-[.active]:opacity-100">
+                            <div
+                                class="p-6 pt-0 text-navy-deep/70 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 mt-2">
+                                <p><strong>Ya, 100% Aman.</strong> Semua pengiriman mobil kami dilindungi oleh asuransi
+                                    <em>all-risk</em> terpercaya (Tokyo Marine / Sinar Mas). Klaim dapat diajukan penuh
+                                    jika terjadi kerusakan lecet atau penyok selama proses pengiriman berlangsung.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div
+                        class="faq-item group bg-white dark:bg-[#2d2218] rounded-2xl shadow-lg border border-transparent transition-all duration-300 hover:shadow-xl">
+                        <button
+                            class="w-full flex justify-between items-center text-left p-6 font-semibold text-navy-deep dark:text-white group-hover:text-primary transition-colors focus:outline-none">
+                            <span class="text-lg">Berapa biaya pengiriman mobil?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center transition-all duration-300 group-[.active]:bg-primary group-[.active]:text-white group-[.active]:rotate-180">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </button>
+                        <div
+                            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0 group-[.active]:max-h-[500px] group-[.active]:opacity-100">
+                            <div
+                                class="p-6 pt-0 text-navy-deep/70 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 mt-2">
+                                <p>Biaya sangat bervariasi tergantung: <strong>Jenis Mobil</strong>
+                                    (Kecil/Sedang/Besar), <strong>Rute Tujuan</strong>, dan <strong>Layanan</strong>
+                                    (Door-to-Door / Port-to-Port). Gunakan fitur cek tarif di atas atau hubungi CS kami
+                                    via WhatsApp untuk penawaran terbaik hari ini.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div
+                        class="faq-item group bg-white dark:bg-[#2d2218] rounded-2xl shadow-lg border border-transparent transition-all duration-300 hover:shadow-xl">
+                        <button
+                            class="w-full flex justify-between items-center text-left p-6 font-semibold text-navy-deep dark:text-white group-hover:text-primary transition-colors focus:outline-none">
+                            <span class="text-lg">Bagaimana cara melacak pengiriman saya?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center transition-all duration-300 group-[.active]:bg-primary group-[.active]:text-white group-[.active]:rotate-180">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </button>
+                        <div
+                            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0 group-[.active]:max-h-[500px] group-[.active]:opacity-100">
+                            <div
+                                class="p-6 pt-0 text-navy-deep/70 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 mt-2">
+                                <p>Sangat mudah! Anda akan mendapatkan <strong>Nomor Resi / Link Tracking</strong> yang
+                                    bisa diakses real-time. Selain itu, tim CS kami akan proaktif mengirimkan update
+                                    foto & lokasi via WhatsApp di setiap titik pemberhentian (Checkpoint).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JANGKAUAN LAYANAN (Coverage) - Replaces Locations & Old Coverage -->
+            <section id="coverage" class="w-full py-20 bg-white/50 dark:bg-white/5 backdrop-blur-sm reveal">
+                <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-black text-navy-deep dark:text-white mb-4">Jangkauan
+                            Pengiriman Nasional</h2>
+                        <p class="text-navy-deep/60 dark:text-gray-400 max-w-[700px] mx-auto">
+                            Kami melayani pengiriman kendaraan ke seluruh pelosok Indonesia, dari Sabang sampai Merauke.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+                        <!-- Island Items -->
+                        <div
+                            class="group bg-white dark:bg-[#2d2218] p-6 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all text-center">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-3 group-hover:scale-110 transition-transform">landscape</span>
+                            <h3 class="font-bold text-navy-deep dark:text-white">Sumatera</h3>
+                            <p class="text-xs text-green-500 mt-2 font-semibold">● Tersedia</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-[#2d2218] p-6 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all text-center">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-3 group-hover:scale-110 transition-transform">location_city</span>
+                            <h3 class="font-bold text-navy-deep dark:text-white">Jawa & Bali</h3>
+                            <p class="text-xs text-green-500 mt-2 font-semibold">● Tersedia</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-[#2d2218] p-6 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all text-center">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-3 group-hover:scale-110 transition-transform">forest</span>
+                            <h3 class="font-bold text-navy-deep dark:text-white">Kalimantan</h3>
+                            <p class="text-xs text-green-500 mt-2 font-semibold">● Tersedia</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-[#2d2218] p-6 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all text-center">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-3 group-hover:scale-110 transition-transform">waves</span>
+                            <h3 class="font-bold text-navy-deep dark:text-white">Sulawesi</h3>
+                            <p class="text-xs text-green-500 mt-2 font-semibold">● Tersedia</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-[#2d2218] p-6 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all text-center">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-3 group-hover:scale-110 transition-transform">sunny</span>
+                            <h3 class="font-bold text-navy-deep dark:text-white">Papua & Maluku</h3>
+                            <p class="text-xs text-green-500 mt-2 font-semibold">● Tersedia</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fleet" class="w-full py-24 bg-[#0B1C3D] text-white">
+                <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+
+                    <div class="mb-16">
+                        <h2 class="text-3xl md:text-4xl font-black mb-4">
+                            Pilihan Armada Pengiriman
+                        </h2>
+                        <p class="text-gray-400 max-w-[600px]">
+                            Beragam jenis armada siap melayani kebutuhan pengiriman kendaraan Anda dengan aman dan
+                            profesional.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                        <!-- CAR CARRIER -->
+                        <div
+                            class="group bg-white/5 border border-white/10 rounded-3xl p-8 
+                        hover:bg-white/10 hover:border-orange-500/50 transition-all duration-500 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-12 h-12 bg-orange-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 16v3c0 1-1 2-2 2H7c-1 0-2-1-2-2v-3m14 0l-1.4-1.4c-.4-.4-1-.6-1.6-.6H7c-.6 0-1.2.2-1.6.6L4 16m15 0h-2m-2 0H9m-2 0H5">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Car Carrier</h3>
+                                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                                    Truk khusus untuk mengangkut 5–6 mobil sekaligus. Solusi paling hemat untuk
+                                    pengiriman massal antar kota.
+                                </p>
+                            </div>
+
+                            <ul class="space-y-3 text-xs text-gray-300">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Tarif Paling Ekonomis
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Keberangkatan Terjadwal
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- TOWING HYDRAULIK -->
+                        <div
+                            class="group bg-white/5 border border-white/10 rounded-3xl p-8 
+                        hover:bg-white/10 hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between">
+                            <div>
+                                <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Towing Hydraulik</h3>
+                                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                                    Layanan satu truk untuk satu mobil. Sangat aman untuk kendaraan mewah, sport, atau
+                                    mobil ceper.
+                                </p>
+                            </div>
+
+                            <ul class="space-y-3 text-xs text-gray-300">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Layanan VIP & Eksklusif
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Pengiriman Door to Door
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- SELF DRIVE -->
+                        <div
+                            class="group bg-white/5 border border-white/10 rounded-3xl p-8 
+                        hover:bg-white/10 hover:border-green-500/50 transition-all duration-500 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-12 h-12 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Self Drive</h3>
+                                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                                    Kendaraan dikendarai oleh driver profesional kami. Metode pengiriman tercepat tanpa
+                                    perlu antre.
+                                </p>
+                            </div>
+
+                            <ul class="space-y-3 text-xs text-gray-300">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Waktu Kirim Tercepat
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Driver Resmi & Berlisensi
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- LOWBED / TRONTON -->
+                        <div
+                            class="group bg-white/5 border border-white/10 rounded-3xl p-8 
+                        hover:bg-white/10 hover:border-yellow-500/50 transition-all duration-500 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-12 h-12 bg-yellow-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Lowbed / Tronton</h3>
+                                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                                    Khusus untuk alat berat seperti excavator atau material konstruksi dengan dimensi
+                                    besar dan berat.
+                                </p>
+                            </div>
+
+                            <ul class="space-y-3 text-xs text-gray-300">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Kapasitas Hingga 40 Ton
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Keamanan Berlapis (Binding)
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- JAMINAN KEAMANAN (Safety) - Replaces Blog -->
+            <section id="safety" class="w-full py-20 reveal">
+                <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+                    <div
+                        class="bg-gradient-to-br from-gray-50 to-white dark:from-[#2d2218] dark:to-[#1a120a] rounded-3xl p-10 md:p-16 border border-gray-100 dark:border-white/5 shadow-2xl relative overflow-hidden">
+                        <!-- Decorative bg -->
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                        </div>
+
+                        <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h2 class="text-3xl md:text-5xl font-black text-navy-deep dark:text-white mb-6">
+                                    Bekerja Sama dengan Mitra Terpercaya
+                                </h2>
+                                <p class="text-navy-deep/70 dark:text-gray-400 text-lg mb-8 leading-relaxed">
+                                    Kami menjamin keamanan aset Anda melalui kerjasama dengan perusahaan asuransi
+                                    terkemuka dan standar operasional yang ketat.
+                                </p>
+
+                                <div class="flex flex-wrap gap-6 mb-8">
+                                    <!-- Insurance Badges -->
+                                    <div
+                                        class="flex items-center gap-3 bg-white dark:bg-black/20 px-4 py-2 rounded-lg shadow-sm">
+                                        <span class="material-symbols-outlined text-green-500">verified_user</span>
+                                        <span class="font-bold text-navy-deep dark:text-white">Asuransi All Risk</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-3 bg-white dark:bg-black/20 px-4 py-2 rounded-lg shadow-sm">
+                                        <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                        <span class="font-bold text-navy-deep dark:text-white">Real-time Tracking</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-3 bg-white dark:bg-black/20 px-4 py-2 rounded-lg shadow-sm">
+                                        <span class="material-symbols-outlined text-primary">engineering</span>
+                                        <span class="font-bold text-navy-deep dark:text-white">Tim Ahli</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Illustration/Icons -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div
+                                    class="bg-white dark:bg-white/5 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-white/5 flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300">
+                                    <div
+                                        class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                                        <span class="material-symbols-outlined text-2xl">security</span>
+                                    </div>
+                                    <h4 class="font-bold text-navy-deep dark:text-white">Proteksi Penuh</h4>
+                                    <p class="text-xs text-gray-500 mt-2">Perlindungan menyeluruh terhadap kerusakan &
+                                        kehilangan.</p>
+                                </div>
+                                <div
+                                    class="bg-white dark:bg-white/5 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-white/5 flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300 translate-y-4">
+                                    <div
+                                        class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
+                                        <span class="material-symbols-outlined text-2xl">support_agent</span>
+                                    </div>
+                                    <h4 class="font-bold text-navy-deep dark:text-white">CS 24/7</h4>
+                                    <p class="text-xs text-gray-500 mt-2">Bantuan pelanggan siap sedia kapanpun Anda
+                                        butuhkan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- CTA Section -->
+            <div class="w-full max-w-[1440px] px-6 md:px-20 py-10 reveal">
+                <div
+                    class="relative bg-gradient-to-r from-primary to-primary-dark rounded-3xl overflow-hidden p-10 md:p-20 text-center flex flex-col items-center gap-8">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none">
+                        <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                            <path d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="white" stroke-width="0.5"></path>
+                            <path d="M0,60 Q25,10 50,60 T100,60" fill="none" stroke="white" stroke-width="0.5"></path>
+                        </svg>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-4 items-center">
+                        <h2 class="text-white tracking-tight text-3xl md:text-5xl font-black max-w-[800px]">Siap
+                            Kirim Kendaraan Anda Hari Ini?</h2>
+                        <p class="text-white/90 text-lg md:text-xl font-medium max-w-[650px]">Konsultasikan
+                            kebutuhan pengiriman Anda secara GRATIS dengan tim ahli logistik kami yang ramah dan
+                            berpengalaman.</p>
+                    </div>
+                    <div class="relative z-10 flex flex-col sm:flex-row gap-4">
+                        <a class="flex min-w-[240px] cursor-pointer items-center justify-center rounded-xl h-14 px-10 bg-navy-deep text-white text-lg font-semibold shadow-2xl hover:bg-navy-light transition-all"
+                            href="https://wa.me/6285242130185">
+                            <span>Hubungi Sekarang</span>
+                        </a>
+                        <button
+                            class="flex min-w-[240px] cursor-pointer items-center justify-center rounded-xl h-14 px-10 bg-white text-navy-deep text-lg font-semibold shadow-xl hover:bg-gray-50 transition-all">
+                            <span>Lihat Daftar Harga</span>
+                        </button>
+                    </div>
+                    <div class="relative z-10 pt-4 flex items-center gap-2 text-white/80 font-semibold">
+                        <span class="material-symbols-outlined">verified</span>
+                        <span>Legalitas PT. Alima Amanah Logistic Terjamin Kemenkumham</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="bg-white dark:bg-[#1a120a] border-t border-border-light dark:border-navy-light py-12 px-6 md:px-20 lg:px-40">
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+                <div class="max-w-[320px] flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 flex items-center justify-center">
+                            <img src="Alima Amanah Logistik 1.png" alt="Alima Amanah Logistic"
+                                class="w-full h-full object-contain">
+                        </div>
+                        <h2 class="text-navy-deep dark:text-white text-lg font-semibold">ALIMA AMANAH LOGISTIC</h2>
+                    </div>
+                    <p class="text-navy-deep/60 dark:text-gray-400 text-sm">Solusi logistik terpercaya untuk pengiriman
+                        mobil dan alat berat ke seluruh pelosok Indonesia dengan pelayanan sepenuh hati.</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-20">
+                    <div class="flex flex-col gap-4">
+                        <h4 class="text-navy-deep dark:text-white font-semibold">Navigasi</h4>
+                        <ul class="flex flex-col gap-2 text-sm text-navy-deep/60 dark:text-gray-400">
+                            <li><a class="hover:text-primary" href="#services">Layanan</a></li>
+                            <li><a class="hover:text-primary" href="#tarif">Cek Tarif</a></li>
+                            <li><a class="hover:text-primary" href="#tracking">Lacak Kiriman</a></li>
+                            <li><a class="hover:text-primary" href="#blog">Artikel</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <h4 class="text-navy-deep dark:text-white font-semibold">Kontak</h4>
+                        <ul class="flex flex-col gap-2 text-sm text-navy-deep/60 dark:text-gray-400">
+                            <li>Jakarta - Surabaya - Makassar</li>
+                            <li>WhatsApp: 085242130185</li>
+                            <li>Email: info@alimalogistic.com</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-4 col-span-2 lg:col-span-1">
+                        <h4 class="text-navy-deep dark:text-white font-semibold">Ikuti Kami</h4>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="size-10 bg-background-light dark:bg-[#2d2218] rounded-full flex items-center justify-center text-navy-deep dark:text-white cursor-pointer hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">facebook</span>
+                            </a>
+                            <a href="#"
+                                class="size-10 bg-background-light dark:bg-[#2d2218] rounded-full flex items-center justify-center text-navy-deep dark:text-white cursor-pointer hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">alternate_email</span>
+                            </a>
+                            <a href="#"
+                                class="size-10 bg-background-light dark:bg-[#2d2218] rounded-full flex items-center justify-center text-navy-deep dark:text-white cursor-pointer hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">photo_camera</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mt-12 pt-8 border-t border-border-light dark:border-navy-light text-center text-sm text-navy-deep/40 dark:text-gray-500">
+                © 2024 PT ALIMA AMANAH LOGISTIC. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </footer>
+
+        <!-- WhatsApp Floating Button -->
+        <a class="fixed bottom-8 right-8 z-[100] group flex items-center gap-3" href="https://wa.me/6285242130185">
+            <div
+                class="bg-white dark:bg-[#2d2218] px-4 py-2 rounded-full shadow-2xl border border-primary/20 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                <span class="text-sm font-semibold whitespace-nowrap">Hubungi CS Alima</span>
+            </div>
+            <div
+                class="w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce">
+                <svg class="size-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z">
+                    </path>
+                </svg>
+            </div>
+        </a>
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top"
+            class="fixed bottom-8 left-8 z-[100] w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all opacity-0 invisible">
+            <span class="material-symbols-outlined">keyboard_arrow_up</span>
+        </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Mobile Menu
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuToggle.addEventListener('click', function () {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', function () {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', currentTheme === 'dark');
+
+        themeToggle.addEventListener('click', function () {
+            html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+
+            // Update icon
+            const icon = this.querySelector('.material-symbols-outlined');
+            icon.textContent = theme === 'dark' ? 'dark_mode' : 'light_mode';
+        });
+
+        // Reveal Animation on Scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Call once to check initial state
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const button = item.querySelector('button');
+
+            button.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.classList.remove('border-primary');
+                    otherItem.classList.add('border-transparent');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    item.classList.remove('border-transparent');
+                    item.classList.add('border-primary');
+                }
+            });
+        });
+
+        // Tariff Calculator
+        const tariffForm = document.querySelector('#tarif form');
+        const tariffResult = document.getElementById('tariff-result');
+
+        if (tariffForm) {
+            tariffForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Show result
+                tariffResult.classList.remove('hidden');
+
+                // Scroll to result
+                tariffResult.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roadmapSteps = [
+                { title: 'Hubungi Kami', icon: 'support_agent', desc: 'Customer menghubungi via WhatsApp atau telepon.', detail: 'Sampaikan kota asal dan tujuan.' },
+                { title: 'Penawaran Harga', icon: 'request_quote', desc: 'Kami berikan estimasi biaya pengiriman.', detail: 'Harga sesuai jarak & jenis mobil.' },
+                { title: 'Harga Disepakati', icon: 'handshake', desc: 'Kesepakatan harga dan jadwal.', detail: 'Kami atur jadwal penjemputan.' },
+                { title: 'Mobil Dijemput', icon: 'directions_car', desc: 'Driver menjemput mobil.', detail: 'Proses door to door dimulai.' },
+                { title: 'Dokumentasi', icon: 'photo_camera', desc: 'Pengecekan kondisi mobil.', detail: 'Foto & video dokumentasi.' },
+                { title: 'Dalam Perjalanan', icon: 'route', desc: 'Mobil menuju kota tujuan.', detail: 'Update perjalanan tersedia.' },
+                { title: 'Tiba di Lokasi', icon: 'location_on', desc: 'Mobil sampai tujuan.', detail: 'Driver hubungi penerima.' },
+                { title: 'Serah Terima', icon: 'verified', desc: 'Mobil diterima aman.', detail: 'Proses selesai.' }
+            ];
+
+            const list = document.getElementById("roadmap-list");
+            const content = document.getElementById("roadmap-content");
+
+            if (list && content) {
+                roadmapSteps.forEach((step, index) => {
+                    list.innerHTML += `
+                        <div id="step-${index}" 
+                        class="roadmap-card group flex items-center gap-4 p-4 rounded-xl 
+                            cursor-pointer transition-all duration-300 border border-transparent hover:bg-white/40 dark:hover:bg-navy-deep/40">
+                            <div class="step-number w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm shadow-sm transition-all group-hover:scale-110">
+                                ${index + 1}
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xs font-bold text-navy-deep dark:text-white uppercase tracking-wider group-hover:text-primary transition-colors">${step.title}</h4>
+                                <p class="text-[10px] text-gray-500 dark:text-gray-400 font-medium">Tahap 0${index + 1}</p>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">${step.icon}</span>
+                        </div>
+                    `;
+                });
+
+                window.updateStep = function (i) {
+                    document.querySelectorAll(".roadmap-card").forEach(el => el.classList.remove("active"));
+                    const activeCard = document.getElementById(`step-${i}`);
+                    if (activeCard) activeCard.classList.add("active");
+
+                    const step = roadmapSteps[i];
+
+                    content.innerHTML = `
+                        <div class="fade-slide-up space-y-8">
+                            <div class="w-24 h-24 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto backdrop-blur">
+                                <span class="material-symbols-outlined text-5xl text-primary">${step.icon}</span>
+                            </div>
+                            <h3 class="text-3xl font-extrabold text-navy-deep dark:text-white">${step.title}</h3>
+                            <p class="italic text-gray-600 dark:text-gray-300 max-w-xl mx-auto">"${step.desc}"</p>
+                            <div class="bg-primary/5 dark:bg-primary/10 border-l-4 border-primary p-4 rounded-xl max-w-md mx-auto text-sm text-gray-700 dark:text-gray-200 backdrop-blur">
+                                ${step.detail}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                let current = 0;
+                updateStep(current);
+
+                setInterval(() => {
+                    current = (current + 1) % roadmapSteps.length;
+                    updateStep(current);
+                }, 4000);
+
+                list.addEventListener("click", e => {
+                    const card = e.target.closest(".roadmap-card");
+                    if (!card) return;
+                    current = parseInt(card.id.split("-")[1]);
+                    updateStep(current);
+                });
+            }
+        });
+        const swiper = new Swiper('.premium-testimonial', {
+            slidesPerView: 1.1,
+            centeredSlides: true,
+            loop: true,
+            spaceBetween: 30,
+            speed: 800,
+            grabCursor: true,
+
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1280: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
